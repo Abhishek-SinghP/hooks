@@ -3,6 +3,7 @@ import { useState } from "react";  // named imported
 
 function State() {
     const [name, setName] = useState("Abhishek Singh");
+    const [count, setCount] = useState(0);
     const [user, setUser] = useState({ name: "Abhishek Singh", age: 26 })
 
     // returns a state variable and a function using which you can update the state value because we do not have setState function
@@ -19,11 +20,13 @@ function State() {
     }
 
     const updateObjState = () => {
-        setUser((prevState) => ({
-            ...prevState,
-            name: 'Ayush Singh',
-            age: 17,
-        }));
+        setUser(prevState => {
+            return ({
+                ...prevState,
+                name: 'Ayush Singh',
+                age: 17,
+            })
+        })
     }
 
     return (
@@ -36,6 +39,8 @@ function State() {
             <br />
             <br />
             <button onClick={() => setName("Full-Stack Developer")}>Click to update the state variable using arrow function</button>
+            <p>State count variable {count}</p>
+            <button onClick={() => setCount(prevState => prevState + 1)}>Update the state count variable by using prev state</button>
             <p>State as an Object: {user.name}</p>
             <p>State as an Object: {user.age}</p>
             <button onClick={updateObjState}>Click to update object state variable value</button>
@@ -49,5 +54,5 @@ export default State;
 // defination , structure
 // how to use the state variable in dom
 // update the state variable => by creating a seperate function and by writing in the same line
-// prevState
-
+// prevState concept
+// This prevState is required when you want to use the initial value when you are updating the new state variable value.
